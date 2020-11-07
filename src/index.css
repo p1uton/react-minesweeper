@@ -1,0 +1,130 @@
+.field {
+  /* width: 400px; */
+  /* height: 400px; */
+  border: 1px solid #cccccc;
+  margin: auto;
+}
+
+.cell {
+  float: left;
+  width: 20px;
+  height: 20px;
+  /* background: #eeeeee; */
+  /* background: #dddddd; */
+  background: #e3e3e3;
+  cursor: default;
+  text-align: center;
+  font-family: Arial Black;
+  font-size: 16px;
+  line-height: 18px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  /* border: 1px solid #cccccc; */
+  border-top: 1px solid #999999;
+  border-left: 1px solid #999999;
+}
+
+.cell-closed {
+  background: #cccccc;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #999999;
+  border-bottom: 2px solid #999999;
+}
+
+.cell-detonated {
+  background: #ff9999;
+}
+
+.cell-mine {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.cell-mine::before {
+  content: '\1F4A3';
+}
+
+.cell-flag {
+  line-height: 16px;
+}
+
+.cell-flag::before {
+  content: '\2691';
+}
+
+.cell-flag-red {
+  color: #cc0000;
+}
+
+.cell-flag-green {
+  color: #006600;
+}
+
+.cell-flag-gray {
+  color: #999999;
+}
+
+.cell-1 {
+  color: #0000ff;
+}
+
+.cell-1:before {
+  content: '1';
+}
+
+.cell-2 {
+  color: #006600;
+}
+
+.cell-2:before {
+  content: '2';
+}
+
+.cell-3 {
+  color: #ff0000;
+}
+
+.cell-3:before {
+  content: '3';
+}
+
+.cell-4 {
+  color: #000077;
+}
+
+.cell-4:before {
+  content: '4';
+}
+
+.cell-5 {
+  color: #770000;
+}
+
+.cell-5:before {
+  content: '5';
+}
+
+.cell-6 {
+  color: #006666;
+}
+
+.cell-6:before {
+  content: '6';
+}
+
+.cell-7 {
+  color: #007777;
+}
+
+.cell-7:before {
+  content: '7';
+}
+
+.cell-8 {
+  color: #777777;
+}
+
+.cell-8:before {
+  content: '8';
+}
