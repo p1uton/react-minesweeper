@@ -1,17 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {isNext, getCell, checkStatus, countFlagsNext} from './functions';
 import {Cell} from './Cell';
 
 const rows = 16;
 const cols = 30;
 const minesCount = 99;
-
-const statuses = [
-  'new',
-  'play',
-  'win',
-  'lost',
-];
 
 const initialCells = () => {
   let cells = [];
@@ -54,6 +47,17 @@ function App() {
 
   const [cells, setCells] = useState(() => initialCells());
   const [status, setStatus] = useState(() => 0);
+  const [timer, setTimer] = useState(() => 0);
+
+
+  useEffect(() => {
+    if (1 === status) {
+      const interval = setInterval(() => {
+        setTimer(value => value + 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [status]);
 
 
   const handleCellClick = (event, id, isRightClick) => {
@@ -151,22 +155,45 @@ function App() {
   };
 
 
+  const handleResetClick = event => {
+    event.preventDefault();
+    resetGame();
+  };
+
+
+  const resetGame = () => {
+    setStatus(0);
+    setTimer(0);
+    setCells(initialCells());
+  };
+
+
   return (
     <div>
-      <div className="field" style={{width: cols*20, height: rows*20}}>
-        {cells.map(cell => <Cell
-          key={cell.id}
-          cell={cell}
-          status={status}
-          onClick={handleCellClick}
-          onMouseDown={handleCellMouseDown}
-          onMouseUp={handleCellMouseUp}
-        />)}
+      <div className="container" style={{width: cols*20}}>
+        <div className="topbar">
+          <div className="mines-left">
+            {cells.filter(cell => cell.isMine).length - cells.filter(cell => cell.isFlag).length}
+          </div>
+          <div className="status" onClick={event => handleResetClick(event)}>
+            <div className={'status' + status}>
+            </div>
+          </div>
+          <div className="timer">
+            {timer}
+          </div>
+        </div>
+        <div className="field" style={{width: cols*20, height: rows*20}}>
+          {cells.map(cell => <Cell
+            key={cell.id}
+            cell={cell}
+            status={status}
+            onClick={handleCellClick}
+            onMouseDown={handleCellMouseDown}
+            onMouseUp={handleCellMouseUp}
+          />)}
+        </div>
       </div>
-      <hr />
-      status: {statuses[status]}
-      <br />
-      mines left: {cells.filter(cell => cell.isMine).length - cells.filter(cell => cell.isFlag).length}
     </div>
   );
 }

@@ -1,8 +1,43 @@
+.container {
+  margin: auto;
+}
+
 .field {
   /* width: 400px; */
   /* height: 400px; */
   border: 1px solid #cccccc;
-  margin: auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  background: #dddddd;
+  padding: 5px;
+}
+
+.mines-left {
+  background: #000000;
+  color: #ff0000;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 3px;
+  min-width: 35px;
+  text-align: right;
+}
+
+.status {
+}
+
+.timer {
+  background: #000000;
+  color: #ff0000;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 3px;
+  min-width: 35px;
+  text-align: right;
 }
 
 .cell {
@@ -127,4 +162,25 @@
 
 .cell-8:before {
   content: '8';
+}
+
+.status {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.status0:before {
+  content: '\1F642';
+}
+
+.status1:before {
+  content: '\1F642';
+}
+
+.status2:before {
+  content: '\1F60E';
+}
+
+.status3:before {
+  content: '\1F915';
 }
