@@ -1,53 +1,42 @@
 import React, {useState, useEffect} from 'react';
-import {isNext, getCell, checkStatus, countFlagsNext} from './functions';
+import {isNext, getCell, checkStatus, countFlagsNext, initialCells} from './functions';
 import {Cell} from './Cell';
 
-const rows = 16;
-const cols = 30;
-const minesCount = 99;
+// const rows = 16;
+// const cols = 30;
+// const minesCount = 99;
 
-const initialCells = () => {
-  let cells = [];
-
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      cells.push({
-        id: r * cols + c,
-        row: r,
-        col: c,
-        isOpen: false,
-        isMine: false,
-        isFlag: false,
-        isMouseDown: false,
-        minesNext: 0,
-      });
-    }
-  }
-
-  let minesLeft = minesCount;
-
-  while (minesLeft > 0) {
-    let rand = Math.floor(Math.random() * cells.length);
-    if (!cells[rand].isMine) {
-      cells[rand].isMine = true;
-      minesLeft--;
-    }
-  }
-
-  cells.map(cell => {
-    cell.minesNext = cells.filter(cell2 => isNext(cell, cell2) && cell2.isMine).length;
-    return cell;
-  });
-
-  return cells;
-};
+const levels = [
+  {
+    id: 0,
+    name: 'Beginner',
+    rows: 8,
+    cols: 8,
+    mines: 10,
+  },
+  {
+    id: 1,
+    name: 'Intermediate',
+    rows: 16,
+    cols: 16,
+    mines: 40,
+  },
+  {
+    id: 2,
+    name: 'Expert',
+    rows: 16,
+    cols: 30,
+    mines: 99,
+  },
+];
 
 
 function App() {
 
-  const [cells, setCells] = useState(() => initialCells());
+  const [level, setLevel] = useState(() => 1);
   const [status, setStatus] = useState(() => 0);
   const [timer, setTimer] = useState(() => 0);
+  const [cells, setCells] = useState(() => initialCells(levels[level]));
 
 
   useEffect(() => {
@@ -157,33 +146,38 @@ function App() {
 
   const handleResetClick = event => {
     event.preventDefault();
-    resetGame();
+    resetGame(level);
   };
 
 
-  const resetGame = () => {
+  const resetGame = newLevel => {
+    setLevel(newLevel);
     setStatus(0);
     setTimer(0);
-    setCells(initialCells());
+    setCells(initialCells(levels[newLevel]));
+  };
+
+
+  const handleLevelClick = (event, newLevel) => {
+    event.preventDefault();
+    resetGame(newLevel);
   };
 
 
   return (
     <div>
-      <div className="container" style={{width: cols*20}}>
+      <div className="container" style={{width: levels[level].cols*20}}>
         <div className="topbar">
-          <div className="mines-left">
+          <div className="topbar-block">
             {cells.filter(cell => cell.isMine).length - cells.filter(cell => cell.isFlag).length}
           </div>
-          <div className="status" onClick={event => handleResetClick(event)}>
-            <div className={'status' + status}>
-            </div>
+          <div className={'status status' + status} onClick={event => handleResetClick(event)}>
           </div>
-          <div className="timer">
+          <div className="topbar-block">
             {timer}
           </div>
         </div>
-        <div className="field" style={{width: cols*20, height: rows*20}}>
+        <div className="field" style={{width: levels[level].cols*20, height: levels[level].rows*20}}>
           {cells.map(cell => <Cell
             key={cell.id}
             cell={cell}
@@ -191,6 +185,14 @@ function App() {
             onClick={handleCellClick}
             onMouseDown={handleCellMouseDown}
             onMouseUp={handleCellMouseUp}
+          />)}
+        </div>
+        <div className="bottombar">
+          {levels.map(item => <input
+            type="button"
+            value={item.name}
+            onClick={event => handleLevelClick(event, item.id)}
+            key={item.id}
           />)}
         </div>
       </div>
