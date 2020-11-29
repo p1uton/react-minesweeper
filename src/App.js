@@ -1,42 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import {isNext, getCell, checkStatus, countFlagsNext, initialCells} from './functions';
-import {Cell} from './Cell';
-
-// const rows = 16;
-// const cols = 30;
-// const minesCount = 99;
-
-const levels = [
-  {
-    id: 0,
-    name: 'Beginner',
-    rows: 8,
-    cols: 8,
-    mines: 10,
-  },
-  {
-    id: 1,
-    name: 'Intermediate',
-    rows: 16,
-    cols: 16,
-    mines: 40,
-  },
-  {
-    id: 2,
-    name: 'Expert',
-    rows: 16,
-    cols: 30,
-    mines: 99,
-  },
-];
-
+import {LEVELS} from './consts';
+import {LevelSelector} from './components/LevelSelector/LevelSelector';
+import {TopBar} from './components/TopBar/TopBar';
+import {Field} from './components/Field/Field';
 
 function App() {
 
   const [level, setLevel] = useState(() => 1);
   const [status, setStatus] = useState(() => 0);
   const [timer, setTimer] = useState(() => 0);
-  const [cells, setCells] = useState(() => initialCells(levels[level]));
+  const [cells, setCells] = useState(() => initialCells(LEVELS[level]));
 
 
   useEffect(() => {
@@ -95,7 +69,6 @@ function App() {
 
   const handleCellMouseDown = (event, id) => {
     event.preventDefault();
-    // console.log('handleCellMouseDown', id);
 
     let currentCells = cells.concat();
     const currentCell = getCell(currentCells, id);
@@ -112,7 +85,6 @@ function App() {
 
   const handleCellMouseUp = (event, id) => {
     event.preventDefault();
-    // console.log('handleCellMouseUp', id);
 
     let currentCells = cells.concat();
     const currentCell = getCell(currentCells, id);
@@ -154,7 +126,7 @@ function App() {
     setLevel(newLevel);
     setStatus(0);
     setTimer(0);
-    setCells(initialCells(levels[newLevel]));
+    setCells(initialCells(LEVELS[newLevel]));
   };
 
 
@@ -166,35 +138,24 @@ function App() {
 
   return (
     <div>
-      <div className="container" style={{width: levels[level].cols*20}}>
-        <div className="topbar">
-          <div className="topbar-block">
-            {cells.filter(cell => cell.isMine).length - cells.filter(cell => cell.isFlag).length}
-          </div>
-          <div className={'status status' + status} onClick={event => handleResetClick(event)}>
-          </div>
-          <div className="topbar-block">
-            {timer}
-          </div>
-        </div>
-        <div className="field" style={{width: levels[level].cols*20, height: levels[level].rows*20}}>
-          {cells.map(cell => <Cell
-            key={cell.id}
-            cell={cell}
-            status={status}
-            onClick={handleCellClick}
-            onMouseDown={handleCellMouseDown}
-            onMouseUp={handleCellMouseUp}
-          />)}
-        </div>
-        <div className="bottombar">
-          {levels.map(item => <input
-            type="button"
-            value={item.name}
-            onClick={event => handleLevelClick(event, item.id)}
-            key={item.id}
-          />)}
-        </div>
+      <div className="container" style={{width: LEVELS[level].cols*20}}>
+        <TopBar 
+          cells={cells}
+          status={status}
+          timer={timer}
+          onResetClick={handleResetClick}
+        />
+        <Field 
+          cells={cells}
+          level={level}
+          status={status}
+          onCellClick={handleCellClick}
+          onCellMouseDown={handleCellMouseDown}
+          onCellMouseUp={handleCellMouseUp}
+        />
+        <LevelSelector 
+          onClick={handleLevelClick}
+        />
       </div>
     </div>
   );
