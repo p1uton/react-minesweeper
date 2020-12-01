@@ -1,7 +1,7 @@
 import React from 'react';
-import {LEVELS} from '../../consts';
+import { LEVELS } from '../consts';
 
-export const LevelSelector = ({onClick}) => {
+export const LevelSelector = ({ onClick }) => {
   return (
     <div className="bottombar">
       {LEVELS.map(item => <input

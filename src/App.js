@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {isNext, getCell, checkStatus, countFlagsNext, initialCells} from './functions';
-import {LEVELS} from './consts';
-import {LevelSelector} from './components/LevelSelector/LevelSelector';
-import {TopBar} from './components/TopBar/TopBar';
-import {Field} from './components/Field/Field';
+import React, { useState, useEffect } from 'react';
+import { isNext, getCell, checkStatus, countFlagsNext, initialCells } from './functions';
+import { LEVELS } from './consts';
+import { LevelSelector } from './components/LevelSelector';
+import { TopBar } from './components/TopBar';
+import { Field } from './components/Field';
 
 function App() {
 
@@ -137,26 +137,27 @@ function App() {
 
 
   return (
-    <div>
-      <div className="container" style={{width: LEVELS[level].cols*20}}>
-        <TopBar 
-          cells={cells}
-          status={status}
-          timer={timer}
-          onResetClick={handleResetClick}
-        />
-        <Field 
-          cells={cells}
-          level={level}
-          status={status}
-          onCellClick={handleCellClick}
-          onCellMouseDown={handleCellMouseDown}
-          onCellMouseUp={handleCellMouseUp}
-        />
-        <LevelSelector 
-          onClick={handleLevelClick}
-        />
-      </div>
+    <div
+      className="container"
+      style={{ width: LEVELS[level].cols * 20 }}
+    >
+      <TopBar
+        cells={cells}
+        status={status}
+        timer={timer}
+        onResetClick={handleResetClick}
+      />
+      <Field
+        cells={cells}
+        level={level}
+        status={status}
+        onCellClick={handleCellClick}
+        onCellMouseDown={handleCellMouseDown}
+        onCellMouseUp={handleCellMouseUp}
+      />
+      <LevelSelector
+        onClick={handleLevelClick}
+      />
     </div>
   );
 }

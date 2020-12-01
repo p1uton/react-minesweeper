@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Cell = ({cell, status, onClick, onMouseDown, onMouseUp}) => {
+export const Cell = ({ cell, status, onClick, onMouseDown, onMouseUp }) => {
   let classes = ['cell'];
 
   if (0 === status) {
