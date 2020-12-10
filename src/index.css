@@ -2,11 +2,36 @@
   margin: auto;
 }
 
+.container-0 {
+  width: 160px;
+}
+
+.container-1 {
+  width: 320px;
+}
+
+.container-2 {
+  width: 600px;
+}
+
 .field {
-  /* width: 400px; */
-  /* height: 400px; */
   border-bottom: 1px solid #999999;
   border-right: 1px solid #999999;
+}
+
+.field-0 {
+  width: 160px;
+  height: 160px;
+}
+
+.field-1 {
+  width: 320px;
+  height: 320px;
+}
+
+.field-2 {
+  width: 600px;
+  height: 320px;
 }
 
 .topbar {
@@ -37,8 +62,6 @@
   float: left;
   width: 20px;
   height: 20px;
-  /* background: #eeeeee; */
-  /* background: #dddddd; */
   background: #e3e3e3;
   cursor: default;
   text-align: center;
@@ -47,7 +70,6 @@
   line-height: 18px;
   vertical-align: middle;
   box-sizing: border-box;
-  /* border: 1px solid #cccccc; */
   border-top: 1px solid #999999;
   border-left: 1px solid #999999;
 }

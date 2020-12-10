@@ -21,3 +21,14 @@ export const LEVELS = [
     mines: 99,
   },
 ];
+
+export const SET_STATUS = 'SET_STATUS';
+export const RESET_GAME = 'RESET_GAME';
+export const FLAG_CELL = 'FLAG_CELL';
+export const OPEN_CELLS = 'OPEN_CELLS';
+export const PRESS_CELLS = 'PRESS_CELLS';
+
+export const STATUS_NEW = 0;
+export const STATUS_PLAY = 1;
+export const STATUS_WIN = 2;
+export const STATUS_LOST = 3;

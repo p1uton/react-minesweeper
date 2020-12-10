@@ -1,15 +1,16 @@
 import React from 'react';
+import { STATUS_NEW, STATUS_PLAY, STATUS_WIN, STATUS_LOST } from '../consts';
 
-export const Cell = ({ cell, status, onClick, onMouseDown, onMouseUp }) => {
+export const Cell = ({ cell, status, onCellMouseDown, onCellMouseUp, onCellClick }) => {
   let classes = ['cell'];
 
-  if (0 === status) {
+  if (STATUS_NEW === status) {
     classes.push('cell-closed');
   } else if (!cell.isOpen) {
     if (cell.isFlag) {
-      if (1 === status) {
+      if (STATUS_PLAY === status) {
         classes.push('cell-closed', 'cell-flag', 'cell-flag-red');
-      } else if ((2 === status) || (3 === status)) {
+      } else if ((STATUS_WIN === status) || (STATUS_LOST === status)) {
         if (cell.isMine) {
           classes.push('cell-closed', 'cell-flag', 'cell-flag-green');
         } else {
@@ -17,15 +18,15 @@ export const Cell = ({ cell, status, onClick, onMouseDown, onMouseUp }) => {
         }
       }
     } else if (cell.isMine) {
-      if (3 === status) {
+      if (STATUS_LOST === status) {
         classes.push('cell-mine');
       } else {
-        if (!cell.isMouseDown) {
+        if (!cell.isPressed) {
           classes.push('cell-closed');
         }
       }
     } else {
-      if (!cell.isMouseDown) {
+      if (!cell.isPressed) {
         classes.push('cell-closed');
       }
     }
@@ -40,10 +41,10 @@ export const Cell = ({ cell, status, onClick, onMouseDown, onMouseUp }) => {
   return (
     <div
       className={classes.join(' ')}
-      onClick={event => onClick(event, cell.id, false)}
-      onContextMenu={event => onClick(event, cell.id, true)}
-      onMouseDown={event => onMouseDown(event, cell.id)}
-      onMouseUp={event => onMouseUp(event, cell.id)}
+      onMouseDown={event => onCellMouseDown(event, cell.id)}
+      onMouseUp={event => onCellMouseUp(event, cell.id)}
+      onClick={event => onCellClick(event, cell.id)}
+      onContextMenu={event => onCellClick(event, cell.id)}
     />
   );
 };
