@@ -14,6 +14,10 @@
   width: 600px;
 }
 
+.container-3 {
+  width: 1200px;
+}
+
 .field {
   border-bottom: 1px solid #999999;
   border-right: 1px solid #999999;
@@ -32,6 +36,11 @@
 .field-2 {
   width: 600px;
   height: 320px;
+}
+
+.field-3 {
+  width: 1200px;
+  height: 640px;
 }
 
 .topbar {

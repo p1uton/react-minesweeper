@@ -20,6 +20,13 @@ export const LEVELS = [
     cols: 30,
     mines: 99,
   },
+  {
+    id: 3,
+    name: 'Jedi',
+    rows: 32,
+    cols: 60,
+    mines: 400,
+  },
 ];
 
 export const SET_STATUS = 'SET_STATUS';
