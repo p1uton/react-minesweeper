@@ -1,9 +1,10 @@
 import React from 'react';
-import { STATUS_NEW, STATUS_PLAY, STATUS_WIN, STATUS_LOST } from '../consts';
-import { Cell } from '../components/Cell';
+import { STATUS_NEW, STATUS_PLAY, STATUS_WIN, STATUS_LOST } from '../../consts';
+import { Cell } from '../../components/Cell/Cell';
 import { useSelector, useDispatch } from 'react-redux';
-import { flagCellAction, openCellsAction, pressCellsAction, setStatusAction } from '../actions';
-import { getCell, findNextCells, countFlagsNext, checkStatus } from '../functions';
+import { flagCellAction, openCellsAction, pressCellsAction, setStatusAction } from '../../actions';
+import { getCell, findNextCells, countFlagsNext, checkStatus } from '../../functions';
+import classes from './Field.module.css';
 
 export const Field = () => {
 
@@ -84,8 +85,10 @@ export const Field = () => {
     }
   };
 
+  const cls = [classes.Field, classes['Field-' + level]];
+
   return (
-    <div className={'field field-' + level}>
+    <div className={cls.join(' ')}>
       {
         cells.map(
           cell => <Cell

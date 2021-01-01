@@ -1,0 +1,6 @@
+.TopBar {
+  display: flex;
+  justify-content: space-between;
+  background: #dddddd;
+  padding: 5px;
+}

@@ -1,0 +1,120 @@
+.Cell {
+  float: left;
+  width: 20px;
+  height: 20px;
+  background: #e3e3e3;
+  cursor: default;
+  text-align: center;
+  font-family: Arial Black;
+  font-size: 16px;
+  line-height: 18px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  border-top: 1px solid #999999;
+  border-left: 1px solid #999999;
+}
+
+.closed {
+  background: #cccccc;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #999999;
+  border-bottom: 2px solid #999999;
+}
+
+.detonated {
+  background: #ff9999;
+}
+
+.mine {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.mine::before {
+  content: '\1F4A3';
+}
+
+.flag {
+  line-height: 16px;
+}
+
+.flag::before {
+  content: '\2691';
+}
+
+.red {
+  color: #cc0000;
+}
+
+.green {
+  color: #006600;
+}
+
+.gray {
+  color: #999999;
+}
+
+.count-1 {
+  color: #0000ff;
+}
+
+.count-1:before {
+  content: '1';
+}
+
+.count-2 {
+  color: #006600;
+}
+
+.count-2:before {
+  content: '2';
+}
+
+.count-3 {
+  color: #ff0000;
+}
+
+.count-3:before {
+  content: '3';
+}
+
+.count-4 {
+  color: #000077;
+}
+
+.count-4:before {
+  content: '4';
+}
+
+.count-5 {
+  color: #770000;
+}
+
+.count-5:before {
+  content: '5';
+}
+
+.count-6 {
+  color: #006666;
+}
+
+.count-6:before {
+  content: '6';
+}
+
+.count-7 {
+  color: #007777;
+}
+
+.count-7:before {
+  content: '7';
+}
+
+.count-8 {
+  color: #777777;
+}
+
+.count-8:before {
+  content: '8';
+}

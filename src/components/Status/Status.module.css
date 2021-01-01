@@ -1,0 +1,20 @@
+.Status {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.Status-0:before {
+  content: '\1F642';
+}
+
+.Status-1:before {
+  content: '\1F642';
+}
+
+.Status-2:before {
+  content: '\1F60E';
+}
+
+.Status-3:before {
+  content: '\1F915';
+}

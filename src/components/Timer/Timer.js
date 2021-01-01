@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { STATUS_NEW, STATUS_PLAY } from '../consts';
+import { STATUS_NEW, STATUS_PLAY } from '../../consts';
+import classes from './Timer.module.css';
 
 export const Timer = () => {
 
@@ -20,7 +21,7 @@ export const Timer = () => {
   }, [status]);
 
   return (
-    <div className="topbar-block">
+    <div className={classes.Timer}>
       {timer}
     </div>
   );

@@ -1,46 +1,47 @@
 import React from 'react';
-import { STATUS_NEW, STATUS_PLAY, STATUS_WIN, STATUS_LOST } from '../consts';
+import { STATUS_NEW, STATUS_PLAY, STATUS_WIN, STATUS_LOST } from '../../consts';
+import classes from './Cell.module.css';
 
 export const Cell = ({ cell, status, onCellMouseDown, onCellMouseUp, onCellClick }) => {
-  let classes = ['cell'];
+  let cls = [classes.Cell];
 
   if (STATUS_NEW === status) {
-    classes.push('cell-closed');
+    cls.push(classes.closed);
   } else if (!cell.isOpen) {
     if (cell.isFlag) {
       if (STATUS_PLAY === status) {
-        classes.push('cell-closed', 'cell-flag', 'cell-flag-red');
+        cls.push(classes.closed, classes.flag, classes.red);
       } else if ((STATUS_WIN === status) || (STATUS_LOST === status)) {
         if (cell.isMine) {
-          classes.push('cell-closed', 'cell-flag', 'cell-flag-green');
+          cls.push(classes.closed, classes.flag, classes.green);
         } else {
-          classes.push('cell-closed', 'cell-flag', 'cell-flag-gray');
+          cls.push(classes.closed, classes.flag, classes.gray);
         }
       }
     } else if (cell.isMine) {
       if (STATUS_LOST === status) {
-        classes.push('cell-mine');
+        cls.push(classes.mine);
       } else {
         if (!cell.isPressed) {
-          classes.push('cell-closed');
+          cls.push(classes.closed);
         }
       }
     } else {
       if (!cell.isPressed) {
-        classes.push('cell-closed');
+        cls.push(classes.closed);
       }
     }
   } else {
     if (cell.isMine) {
-      classes.push('cell-mine', 'cell-detonated');
+      cls.push(classes.mine, classes.detonated);
     } else if (0 !== cell.minesNext) {
-      classes.push('cell-' + cell.minesNext);
+      cls.push(classes['count-' + cell.minesNext]);
     }
   }
 
   return (
     <div
-      className={classes.join(' ')}
+      className={cls.join(' ')}
       onMouseDown={event => onCellMouseDown(event, cell.id)}
       onMouseUp={event => onCellMouseUp(event, cell.id)}
       onClick={event => onCellClick(event, cell.id)}
