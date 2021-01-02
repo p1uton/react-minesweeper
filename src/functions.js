@@ -118,9 +118,10 @@ export const saveLevel = level => {
 
 export const initialState = () => {
   const savedLevel = localStorage.getItem('level');
+  const initialLevel = (null !== savedLevel) ? savedLevel : 1;
   return {
-    level: savedLevel,
+    level: initialLevel,
     status: STATUS_NEW,
-    cells: initialCells(LEVELS[savedLevel]),
+    cells: initialCells(LEVELS[initialLevel]),
   };
 };
