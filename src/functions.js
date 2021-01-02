@@ -1,4 +1,4 @@
-import { STATUS_LOST, STATUS_WIN } from "./consts";
+import { LEVELS, STATUS_LOST, STATUS_NEW, STATUS_WIN } from "./consts";
 
 export const initialCells = ({ rows, cols, mines }) => {
   let cells = [];
@@ -96,4 +96,31 @@ export const findNextCells = (currentCells, id, foundCells, isSearchTree) => {
   }
 
   return resultCells;
+};
+
+
+export const loadLevel = () => {
+  try {
+    return localStorage.getItem('level');
+  } catch {
+    return null;
+  }
+};
+
+
+export const saveLevel = level => {
+  try {
+    localStorage.setItem('level', level);
+  } catch {
+  }
+};
+
+
+export const initialState = () => {
+  const savedLevel = localStorage.getItem('level');
+  return {
+    level: savedLevel,
+    status: STATUS_NEW,
+    cells: initialCells(LEVELS[savedLevel]),
+  };
 };

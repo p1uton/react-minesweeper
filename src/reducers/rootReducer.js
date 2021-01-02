@@ -1,19 +1,13 @@
 import { FLAG_CELL, LEVELS, OPEN_CELLS, PRESS_CELLS, RESET_GAME, SET_STATUS, STATUS_NEW } from '../consts';
 import { initialCells } from '../functions';
 
-const initialState = {
-  level: 1,
-  status: STATUS_NEW,
-  cells: initialCells(LEVELS[1]),
-};
-
-export const rootReducer = (state = initialState, action) => {
+export const rootReducer = (state, action) => {
   switch (action.type) {
     case RESET_GAME:
       return {
         ...state,
         level: action.payload,
-        status: initialState.status,
+        status: STATUS_NEW,
         cells: initialCells(LEVELS[action.payload]),
       };
     case SET_STATUS:
